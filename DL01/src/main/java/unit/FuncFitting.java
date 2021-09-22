@@ -73,10 +73,31 @@ public class FuncFitting {
     }
 
     /**
+     * 函数计算 x 》 y
+     * */
+    public double calculateY(double x) {
+        double[] coeffient = this.getCoeffient();
+        double num = 0;
+        for (int i = 0; i < coeffient.length; i++) {
+            num += coeffient[i] * Math.pow(x,i);
+        }
+        return num;
+    }
+
+    /**
      * 计算函数最快下降梯度
      */
-    public int maxGradient() {
-        double[] coeffient = this.getCoeffient();
-
+    public double maxGradient() {
+        double maxSlope = 0;
+        int nowPoint = 0;
+        //计算前十个点的梯度，取梯度最大的点
+        for (int i = 1; i <= 10 ; i++) {
+            double nowSlope = Math.abs(calculateY(i) - calculateY(i + 1));
+            if (nowSlope>maxSlope){
+                maxSlope = nowSlope;
+                nowPoint = i;
+            }
+        }
+        return nowPoint;
     }
 }

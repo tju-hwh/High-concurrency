@@ -20,5 +20,6 @@ public class testFuncFitting {
         System.out.println("输出每个系数：");
         for (double d:funcFitting.getCoeffient())
             System.out.print(d+" ");
+        System.out.println("最大梯度: "+funcFitting.maxGradient());
     }
 }
